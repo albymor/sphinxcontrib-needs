@@ -692,11 +692,11 @@ def html_depart(self, node):
 
 
 def latex_visit(self, node):
-    pass
+    self.body.append(" \\begin{tcolorbox} \n")
 
 
 def latex_depart(self, node):
-    pass
+    self.body.append(" \end{tcolorbox} \n")
 
 
 class NeedsNoIdException(SphinxError):
