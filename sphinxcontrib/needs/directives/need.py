@@ -416,8 +416,28 @@ def html_depart(self, node):
 
 
 def latex_visit(self, node):
-    pass
+    self.body.append(" \\begin{tcolorbox} \n")
 
 
 def latex_depart(self, node):
+    self.body.append(" \end{tcolorbox} \n")
+
+
+class NeedsNoIdException(SphinxError):
+    pass
+
+
+class NeedsDuplicatedId(SphinxError):
+    pass
+
+
+class NeedsStatusNotAllowed(SphinxError):
+    pass
+
+
+class NeedsTagNotAllowed(SphinxError):
+    pass
+
+
+class NeedsInvalidException(SphinxError):
     pass
