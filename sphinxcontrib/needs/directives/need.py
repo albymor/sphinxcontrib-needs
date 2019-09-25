@@ -505,10 +505,10 @@ def construct_headline(need_data, app):
     title_spacer = " "
 
     # need title
-    node_type = nodes.inline(title_type, title_type, classes=["needs-type"])
-    node_title = nodes.inline(title_headline, title_headline, classes=["needs-title"])
+    node_type = nodes.inline(title_type, title_type, classes=["needstype"])
+    node_title = nodes.inline(title_headline, title_headline, classes=["needstitle"])
 
-    nodes_id = nodes.inline(classes=["needs-id"])
+    nodes_id = nodes.inline(classes=["needsid"])
 
     nodes_id_text = nodes.Text(title_id, title_id)
     id_ref = make_refnode(app.builder,
@@ -519,7 +519,7 @@ def construct_headline(need_data, app):
                           title=title_id)
     nodes_id += id_ref
 
-    node_spacer = nodes.inline(title_spacer, title_spacer, classes=["needs-spacer"])
+    node_spacer = nodes.inline(title_spacer, title_spacer, classes=["needsspacer"])
 
     headline_line = nodes.line(classes=["headline"])
     headline_line.append(node_type)
@@ -542,7 +542,7 @@ def construct_meta(need_data, env):
     if not isinstance(hide_options, list):
         raise SphinxError('Config parameter needs_hide_options must be of type list')
 
-    node_meta = nodes.line_block(classes=['needs_meta'])
+    node_meta = nodes.line_block(classes=['needsmeta'])
     # need parameters
     param_status = "status: "
     param_tags = "tags: "
@@ -553,7 +553,7 @@ def construct_meta(need_data, env):
         node_status = nodes.inline(param_status, param_status, classes=['status'])
         status_line.append(node_status)
         status_line.append(nodes.inline(need_data["status"], need_data["status"],
-                                        classes=["needs-status", str(need_data['status'])]))
+                                        classes=["needsstatus", str(need_data['status'])]))
         node_meta.append(status_line)
 
     if need_data["tags"] and 'tags' not in hide_options:
@@ -562,9 +562,9 @@ def construct_meta(need_data, env):
         node_tags = nodes.inline(param_tags, param_tags, classes=['tags'])
         tag_line.append(node_tags)
         for tag in need_data['tags']:
-            # node_tags.append(nodes.inline(tag, tag, classes=["needs-tag", str(tag)]))
+            # node_tags.append(nodes.inline(tag, tag, classes=["needstag", str(tag)]))
             # node_tags.append(nodes.inline(' ', ' '))
-            tag_line.append(nodes.inline(tag, tag, classes=["needs-tag", str(tag)]))
+            tag_line.append(nodes.inline(tag, tag, classes=["needstag", str(tag)]))
             tag_line.append(nodes.inline(' ', ' '))
         node_meta.append(tag_line)
 
@@ -603,10 +603,10 @@ def construct_meta(need_data, env):
         if param_data is None or not param_data:
             continue
         param_option = '{}: '.format(key)
-        option_line = nodes.line(classes=['extra_option'])
-        option_line.append(nodes.inline(param_option, param_option, classes=['extra_option']))
+        option_line = nodes.line(classes=['extraoption'])
+        option_line.append(nodes.inline(param_option, param_option, classes=['extraoption']))
         option_line.append(nodes.inline(param_data, param_data,
-                                        classes=["needs-extra-option", str(key)]))
+                                        classes=["needsextraoption", str(key)]))
         node_extra_options.append(option_line)
 
     node_meta += node_extra_options
@@ -623,10 +623,10 @@ def construct_meta(need_data, env):
         if param_data is None or not param_data:
             continue
         param_option = '{}: '.format(key)
-        global_option_line = nodes.line(classes=['global_option'])
-        global_option_line.append(nodes.inline(param_option, param_option, classes=['global_option']))
+        global_option_line = nodes.line(classes=['globaloption'])
+        global_option_line.append(nodes.inline(param_option, param_option, classes=['globaloption']))
         global_option_line.append(nodes.inline(param_data, param_data,
-                                               classes=["needs-global-option", str(key)]))
+                                               classes=["needsglobaloption", str(key)]))
         node_global_options.append(global_option_line)
 
     node_meta += node_global_options
