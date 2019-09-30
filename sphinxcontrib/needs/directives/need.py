@@ -522,11 +522,9 @@ def construct_headline(need_data, app):
     node_spacer = nodes.inline(title_spacer, title_spacer, classes=["needsspacer"])
 
     headline_line = nodes.line(classes=["headline"])
-    headline_line.append(node_type)
+    headline_line.append(nodes_id)
     headline_line.append(node_spacer)
     headline_line.append(node_title)
-    headline_line.append(node_spacer)
-    headline_line.append(nodes_id)
 
     return headline_line
 
