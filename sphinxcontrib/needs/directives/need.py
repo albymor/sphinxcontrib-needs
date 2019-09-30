@@ -690,11 +690,24 @@ def html_depart(self, node):
 
 
 def latex_visit(self, node):
-    self.body.append(" \\begin{tcolorbox} \n")
+    if is_subreq(node):
+        self.body.append("\n\n \\ldots\\hfill \\begin{minipage}{\\dimexpr\\textwidth-1cm} \n")
+    self.body.append("\n \\begin{tcolorbox} \n")
 
 
 def latex_depart(self, node):
-    self.body.append(" \end{tcolorbox} \n")
+    self.body.append("\n \\end{tcolorbox} \n")
+    if is_subreq(node):
+        self.body.append("\n  \\xdef\\tpd{\\the\\prevdepth} \n \\end{minipage} ")
+
+
+def is_subreq(node):
+    node_id = node.attributes["ids"][0]
+    import re
+    regex = r"REQ-SYS-\d{4}-\d{3}"
+    matches = re.findall(regex, node_id, re.MULTILINE)
+
+    return (len(matches) > 0)
 
 
 class NeedsNoIdException(SphinxError):
