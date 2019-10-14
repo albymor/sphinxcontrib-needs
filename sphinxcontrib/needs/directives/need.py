@@ -698,7 +698,7 @@ def latex_visit(self, node):
 def latex_depart(self, node):
     self.body.append("\n \\end{tcolorbox} \n")
     if is_subreq(node):
-        self.body.append("\n  \\xdef\\tpd{\\the\\prevdepth} \n \\end{minipage} ")
+        self.body.append("\n  \\xdef\\tpd{\\the\\prevdepth} \n \\end{minipage} \n\n")
 
 
 def is_subreq(node):
