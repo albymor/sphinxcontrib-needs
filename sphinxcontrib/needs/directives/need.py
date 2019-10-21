@@ -693,7 +693,7 @@ def latex_visit(self, node):
     if is_subreq(node):
         self.body.append("\n\n \\ldots\\hfill \\begin{minipage}{\\dimexpr\\textwidth-1cm} \n")
     
-    if find_draft(node):
+    if has_tag(self, node, 'draft'):
         self.body.append("\n \\begin{tcolorbox}[title=DRAFT,colframe=red!75!black] \n")
     else:
         self.body.append("\n \\begin{tcolorbox} \n")
@@ -714,13 +714,9 @@ def is_subreq(node):
     return (len(matches) > 0)
 
 
-def find_draft(node):
-    try:
-        tags = node.children[0].children[1].children[3].attributes["classes"] # !! non e' detto che funzuioni sempre... 
-    except:
-        return False
-
-    if 'draft' in tags:
+def has_tag(self, node, tag):
+    tags = self.builder.app.builder.env.needs_all_needs[node.attributes["ids"][0]]["tags"]
+    if tag in tags:
         return  True
     else:
         return False
