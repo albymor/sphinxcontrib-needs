@@ -446,23 +446,3 @@ def has_tag(self, node, tag):
         return  True
     else:
         return False
-
-
-class NeedsNoIdException(SphinxError):
-    pass
-
-
-class NeedsDuplicatedId(SphinxError):
-    pass
-
-
-class NeedsStatusNotAllowed(SphinxError):
-    pass
-
-
-class NeedsTagNotAllowed(SphinxError):
-    pass
-
-
-class NeedsInvalidException(SphinxError):
-    pass
